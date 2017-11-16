@@ -22,14 +22,15 @@ public class Process {
        time = new TimeStamp(total_process);
     }
 
-    public void send(String m){
+    public void send(String m, int id_rec){
         time.set_timeStamp(id, time.get_timeStamp(id) + 1);
-        Message message = new Message(m, time, id);
-
+        Message message = new Message(m, time);
+        int delay = Math.ceil(Math.random() * 100);
+        TimeUnit.SECONDS.sleep(delay);
     }
 
     public void receive(){
-
+    
     }
 
     public void acknowledge(){
