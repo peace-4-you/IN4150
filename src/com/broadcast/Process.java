@@ -8,10 +8,12 @@ public class Process {
 
     // ID of this process (0 is the first ID)
     int id;
-    // Asynchronously stores the timestamps of all processes
+    // Asynchronously stores the timestamp of this process
     TimeStamp time;
     // Message queue to store all messages
     LinkedList<Message> message_queue;
+    // Total amount of processes in the system
+    int processCount;
 
     /* Constructor
     * Input: process_id - the ID of this process
@@ -19,20 +21,20 @@ public class Process {
     */
     public Process(int process_id, int total_process){
        id = process_id;
-       time = new TimeStamp(total_process);
+       time = new TimeStamp();
+       processCount = total_process;
     }
 
     public void send(String m){
-        time.set_timeStamp(id, time.get_timeStamp(id) + 1);
-        Message message = new Message(m, time, id);
-
+        time.increment();
+        Message message = new Message(m, time);
     }
 
     public void receive(){
-
+        time.increment();
     }
 
     public void acknowledge(){
-
+        time.increment();
     }
 }
